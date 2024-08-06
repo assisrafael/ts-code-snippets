@@ -3,7 +3,7 @@
 ## Is type
 
 
-```tsx filename=istype.ts
+```tsx
 
   function isString(value: unknown): value is string {
     return typeof value === 'string';
@@ -37,6 +37,58 @@
     return Array.isArray(value) && value.length > 0;
   }
 
+  function isStringArray(value: unknown): value is string[] {
+    return Array.isArray(value) && value.every(isString);
+  }
+
+  function isNumberArray(value: unknown): value is number[] {
+    return Array.isArray(value) && value.every(isNumber);
+  }
+
+  function isUndefined(value: unknown): value is undefined {
+    return typeof value === 'undefined';
+  }
+
+  function isDefined<T>(value: T): value is NonNullable<T> {
+    return value !== undefined && value !== null;
+  }
+
+  function isNull(value: unknown): value is null {
+    return value === null;
+  }
+
+  function isNotNull<T>(value: T | null): value is T {
+    return !isNull(value);
+  }
+
+  function isError(value: unknown): value is Error {
+    return value instanceof Error;
+  }
+
+  function isErrorLike(value: unknown): value is { message: string } {
+    return isObject(value) && isNonEmptyString((value as { message: unknown })?.message);
+  }
+
+  function isDate(value: unknown): value is Date {
+    return value instanceof Date;
+  }
+
+
+```
+
+## Invariants
+
+```tsx
+
+  function invariant(condition: unknown, message: string): asserts condition {
+    if (!condition) {
+      throw new Error(message);
+    }
+  }
+
+  function assertIsNonEmptyString(value: unknown, message: string): asserts value is string {
+    invariant(isNonEmptyString(value), message);
+  }
 
 ```
 

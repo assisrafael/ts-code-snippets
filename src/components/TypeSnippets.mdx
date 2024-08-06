@@ -1,0 +1,42 @@
+# Type checking
+
+## Is type
+
+
+```tsx filename=istype.ts
+
+  function isString(value: unknown): value is string {
+    return typeof value === 'string';
+  }
+
+  function isEmptyString(value: unknown): value is string {
+    return isString(value) && value === '';
+  }
+
+  function isNonEmptyString(value: unknown): value is string {
+    return isString(value) && value.length > 0;
+  }
+
+  function isNumber(value: unknown): value is number {
+    return typeof value === 'number' && !Number.isNaN(value);
+  }
+
+  function isBoolean(value: unknown): value is boolean {
+    return typeof value === 'boolean';
+  }
+
+  function isObject(value: unknown): value is object {
+    return typeof value === 'object' && value !== null;
+  }
+
+  function isEmptyArray(value: unknown): value is unknown[] {
+    return Array.isArray(value) && value.length === 0;
+  }
+
+  function isNonEmptyArray(value: unknown): value is unknown[] {
+    return Array.isArray(value) && value.length > 0;
+  }
+
+
+```
+

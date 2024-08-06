@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CodeSnippet from "../components/CodeSnippet.astro";
+import TypeSnippets from "../components/TypeSnippets.mdx";
+---
+
+<Layout title="TS Code Snippets">
+	<main>
+		<h1>TypeScript Code Snippets</h1>
+
+		<p class="instructions">
+			A collection of small code snippets to help you with <strong
+				>TypeScript</strong
+			>.
+		</p>
+
+		<TypeSnippets />
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	.instructions {
+		margin-bottom: 2rem;
+		border: 1px solid rgba(var(--accent-light), 25%);
+		background: linear-gradient(
+			rgba(var(--accent-dark), 66%),
+			rgba(var(--accent-dark), 33%)
+		);
+		padding: 1.5rem;
+		border-radius: 8px;
+	}
+	.instructions strong {
+		color: rgb(var(--accent-light));
+	}
+</style>
